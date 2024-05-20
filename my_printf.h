@@ -157,7 +157,6 @@ void my_printf(const char *format, ...)
             else if (*format == '%')
             {
                 write(1, format, 1);
-                format++;
             }
         }
         else
