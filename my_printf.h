@@ -114,7 +114,7 @@ void my_printf(const char *format, ...){
                     else if (num == 0){
                         write(1, "0", 1);
                     }
-                    char buff[10]; // taking the max size of integer
+                    char buff[15]; // taking the max size of integer
                     int i = 0;
 
                     while (num != 0){
