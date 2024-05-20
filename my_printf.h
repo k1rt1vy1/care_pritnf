@@ -44,13 +44,11 @@ void my_printf(const char *format, ...)
                 size_t size = strlen(str);
 
                 write(1, str, size);
-                format++;
             }
             else if (*format == 'c')
             {
                 char c = va_arg(args, int);
                 write(1, &c, 1);
-                format++;
             }
             else if (*format == 'f')
             {
