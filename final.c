@@ -5,6 +5,7 @@
 
 void my_printf(const char *format, ...)
 {
+    int write();
     va_list args; // naming the list
     va_start(args, format);
 
@@ -21,7 +22,9 @@ void my_printf(const char *format, ...)
                     write(1, "-", 1);
                     num = num * -1;
                 }
-
+                else if(num == 0){
+                    write(1, "0", 1);
+                }
                 char buff[10]; // taking the max size of integer
                 int i = 0;
 
@@ -54,10 +57,14 @@ void my_printf(const char *format, ...)
                 double num = va_arg(args, double);
                 if (num < 0)
                 {
-                    write(1, "0", 1);
+                    write(1, "-", 1);
                     num = num * -1;
                 }
-
+                else if (num == 0)
+                {
+                    write(1, "0", 1);
+                }
+                
                 int intPart = (int)num;
                 int decPart = (int)((num - intPart) * 1000000); // taking max precision in mind
                 int integer[15], decimal[15];
@@ -129,7 +136,10 @@ void my_printf(const char *format, ...)
                         write(1, "-", 1);
                         num = num * - 1;
                     }
-
+                    else if (num == 0)
+                    {
+                        write(1, "0", 1);
+                    }
                     char buff[10]; // taking the max size of integer
                     int i = 0;
 
@@ -161,16 +171,17 @@ void my_printf(const char *format, ...)
 
 int main()
 {
-    my_printf("Hello, world! \n");
-    my_printf("This is a static message \n");
-    my_printf("The value of x is %d \n", 42);
-    my_printf("My name is %s \n", "Alice");
-    my_printf("The sum of %d and %d is %d \n", 10, 20, 10 + 20);
-    my_printf("The value of pi is %f \n", 3.14159);
-    my_printf("%s bought %d apples for $%.2f each \n", "Bob", 5, 1.25868);
+    my_printf("Hello, world!\n");
+    my_printf("This is a static message\n");
+    my_printf("The value of x is %d\n", 42);
+    my_printf("My name is %s\n", "Alice");
+    my_printf("The sum of %d and %d is %d\n", 10, 20, 10 + 20);
+    my_printf("The value of pi is %f\n", 3.123456789012345);
+    my_printf("%s bought %d apples for $%.2f each\n", "Bob", 5, 1.25868);
     my_printf("");
-    my_printf("Large number: %ld \n", 123456789012345);
+    my_printf("Large number: %ld\n", 1234567890);
+    my_printf("Large number: %ld\n", -1234567890);
     my_printf("Escape sequence: %% \n");
-
+    my_printf("negative no.= %d, zero= %d \n ", -34, 0);
     return 0;
 }
