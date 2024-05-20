@@ -5,6 +5,7 @@
 
 void my_printf(const char *format, ...)
 {
+    int write();
     va_list args; // naming the list
     va_start(args, format);
 
@@ -21,7 +22,9 @@ void my_printf(const char *format, ...)
                     write(1, "-", 1);
                     num = num * -1;
                 }
-
+                else if(num == 0){
+                    write(1, "0", 1);
+                }
                 char buff[10]; // taking the max size of integer
                 int i = 0;
 
@@ -54,10 +57,14 @@ void my_printf(const char *format, ...)
                 double num = va_arg(args, double);
                 if (num < 0)
                 {
-                    write(1, "0", 1);
+                    write(1, "-", 1);
                     num = num * -1;
                 }
-
+                else if (num == 0)
+                {
+                    write(1, "0", 1);
+                }
+                
                 int intPart = (int)num;
                 int decPart = (int)((num - intPart) * 1000000); // taking max precision in mind
                 int integer[15], decimal[15];
@@ -129,7 +136,10 @@ void my_printf(const char *format, ...)
                         write(1, "-", 1);
                         num = num * - 1;
                     }
-
+                    else if (num == 0)
+                    {
+                        write(1, "0", 1);
+                    }
                     char buff[10]; // taking the max size of integer
                     int i = 0;
 
